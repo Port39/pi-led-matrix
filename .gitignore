@@ -6,3 +6,4 @@ _*
 test.py
 local_*
 config.json
+.venv
