@@ -121,10 +121,12 @@ class VirtualMatrix():
         rgb_image = img.convert(RGB)
         self.frame = np.array(rgb_image)
 
-    def show(self):
+    def show(self, enhance_image=True):
         frame = cv2.resize(self.frame, (pixel_width * VIRTUAL_SIZE_MULTIPLIER, pixel_height * VIRTUAL_SIZE_MULTIPLIER))
-        cv2.imshow('LED matrix', enhance(frame))
-
+        if enhance_image:
+            cv2.imshow('LED matrix', enhance(frame))
+        else:
+            cv2.imshow('LED matrix', frame)
         # this is the magic sauce -- waitKey runs all the cv2 handlers behind the scene
         # without this there is no rendering
         cv2.waitKey(virtual_framerate)
@@ -209,8 +211,11 @@ class LiveMatrix():
     def sprite(self, sprite_map, start, color_map):
         sprite(self, sprite_map, start, color_map)
 
-    def show(self):
-        img = Image.fromarray(enhance(self.frame), mode=RGB)
+    def show(self, enhance_image=True):
+        if enhance_image:
+            img = Image.fromarray(enhance(self.frame), mode=RGB)
+        else:
+            img = Image.fromarray(self.frame, mode=RGB)
         self.buff.image(img)
         self.buff.display()
 
