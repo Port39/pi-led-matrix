@@ -173,7 +173,8 @@ class LiveMatrix():
             neopixel_pixels,
             pixel_width,
             pixel_height,
-            orientation=VERTICAL
+            orientation=VERTICAL,
+            alternating=False
         )
         self.start_time = int(time.time())
 
