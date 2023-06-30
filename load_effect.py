@@ -14,7 +14,7 @@ effect_dir = os.path.realpath(
 sys.path.insert(0, effect_dir)
 print("Starting: " + effect_module)
 argv_json = json.dumps(sys.argv[2:])
-print('Playlist JSON: {"effect": "marquee", "argv": ' + argv_json + '}')
+print('Playlist JSON: {"effect": "' + sys.argv[1] + '", "argv": ' + argv_json + '}')
 import effect # pylint: disable=wrong-import-position, wrong-import-order
 matrix = Matrix()
 
